@@ -1,33 +1,28 @@
-public class ArrayStack implements Stackable{
-   
-    //variáveis de instâncias
+public class ReverseArrayStack implements Stackable{
     private Object[] data;
     private int pointerTop;
-   
-    //construtores
-    public ArrayStack(){
+
+    public ReverseArrayStack(){
         this(10);
     }
-
-    public ArrayStack (int length){
+    public ReverseArrayStack(int length){
         data = new Object[length];
-        pointerTop = -1;
+        pointerTop = data.length;
     }
-
-    //métodos auxiliares
     @Override
     public boolean isEmpty(){
-        return (pointerTop == -1);
+        return (pointerTop == data.length);
     }
+
     @Override
     public boolean isFull(){
-        return (pointerTop == data.length -1);
+        return (pointerTop == 0);
+
     }
     @Override
     public String print(){
-        String result = "";
-        for (int i = pointerTop; i >= 0; i--){
-            //iterar elementos do Array
+        String result = " ";
+        for (int i = pointerTop; i>=0; i++){
             result += data[i];
             if(i != 0){
                 result += ";";
@@ -35,33 +30,28 @@ public class ArrayStack implements Stackable{
         } 
         return "["+result+"]";
     }
-
-    //métodos principais
     @Override
     public Object pop(){
         if (isEmpty()){
             //desempilhar
             System.out.println("Stack is empty.");
-            return null;
         }else{
             Object temp = data[pointerTop];
-            pointerTop --;
+            pointerTop ++;
             return temp;
         }
     }
     @Override
     public void push(Object data){
         if (isFull()){
-            //empilhar
-            System.out.println("Stack is full.");
+            System.out.println("Stack is full");
         } else {
-            pointerTop ++;
-            this.data[pointerTop] = data;
+            pointerTop --;
+            data[pointerTop] = data;
         }
     }
     @Override
     public Object peek(){
-        //espiar
         if (isEmpty()){
             System.out.println("Stack is empty.");
         } else {
@@ -70,3 +60,4 @@ public class ArrayStack implements Stackable{
         return null;
     }
 }
+
