@@ -15,5 +15,6 @@ public class Media4Notas {
             soma += notas[i];
             media = soma / 4;
         }
+        System.out.println("Sua média é: " + media);
     }
 }
